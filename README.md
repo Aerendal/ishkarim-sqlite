@@ -1,103 +1,102 @@
 # ishkarim-sqlite
 
-> SQLite jako baza agentów: WAL, FTS5, checkpointing, event-sourcing, JSONB, embeddingi.
+> **SQLite jako baza agentów AI — WAL, checkpointing, FTS5, event-sourcing w jednym pliku**
 
-## Instalacja
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)]()
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)]()
+[![License](https://img.shields.io/badge/license-MIT-green)]()
+[![CPU-only](https://img.shields.io/badge/CPU-only-orange)]()
+
+## Problem, który rozwiązujemy
+
+- Trwała pamięć agenta
+- Event-sourcing z pełnym replayem — odtworzenie historii decyzji agenta
+- WAL snapshoty z podpisami Cosign — audytowalny ślad zmian
+
+Pełna lista → [docs/PROBLEMS.md](docs/PROBLEMS.md)
+
+## Szybki start
 
 ```bash
+# Instalacja
 pip install -e projects/ishkarim-sqlite
+
+# Demo (10 sekund)
+python projects/ishkarim-sqlite/demo.py
 ```
 
-Lub lokalnie z tego repozytorium:
-
-```bash
-cd projects/ishkarim-sqlite
-pip install -e ".[dev]"
-```
-
-## Użycie
+## Użycie w kodzie
 
 ```python
 import ishkarim_sqlite as m
 
-# Lista dostępnych modułów
-print(m.MODULES)
-
-# Wczytaj indeks wiedzy
+# Wszystkie 154 katalogi wiedzy obszaru 'sqlite'
 docs = m.load_knowledge_index()
+print(f"{len(docs)} katalogów | obszar: {m.__area__}")
+
+# Narzędzia pomocnicze
+from ishkarim_sqlite.utils import read_work_md, extract_tags, extract_python_blocks
 ```
 
-## Obszar tematyczny
+## Dla kogo
 
-Ten projekt agreguje wiedzę z **154 katalogów** obszaru `sqlite`:
+- Agent który pamięta poprzednie sesje bez zewnętrznego Redis/Postgres
+- Audit trail dla systemów AI wymagających zgodności z regulacjami (RODO, ISO 27001)
+- Lokalne IDE/narzędzie z historią działań użytkownika
 
-- `5‑minutowy pre‑mortem dla decyzji`
-- `AGI pamięć długowiecznych agentów open-r1`
-- `AI w grach Behavior Trees, GOAP i szybkie starty procgen`
-- `ASCII-wizualizacja różnic w bazie wiedzy`
-- `Agent TODO atomowe jednostki pracy`
-- `Agent TODO atomowe zadania i planista offline`
-- `Agent TODO z atomowym wykonywaniem i checkpointami`
-- `Agent TODO z dokumentów i wersjami artefaktów`
-- … i 146 więcej (pełna lista w [MODULES.md](MODULES.md))
+## Dokumentacja
 
-## Przykładowe źródła
+| Plik | Zawartość |
+|------|-----------|
+| [docs/PROBLEMS.md](docs/PROBLEMS.md) | Co rozwiązuje / czego nie / znane problemy |
+| [docs/api.md](docs/api.md) | Dokumentacja API |
+| [docs/overview.md](docs/overview.md) | Przegląd obszaru |
+| [docs/sources.md](docs/sources.md) | Źródłowe katalogi wiedzy |
+| [MODULES.md](MODULES.md) | Pełny indeks 154 katalogów |
 
-### 5‑minutowy pre‑mortem dla decyzji
+## Testy i benchmarki
 
-# WORK: 5‑minutowy pre‑mortem dla decyzji
-## 0-Metadane
-- Katalog: 5‑minutowy pre‑mortem dla decyzji
-- Pliki: 12 (bez placeholderów; pliki 01–12 zawierają treść, 13–60 są puste)
-- Tagi: pre-mortem, decyzje, ryzyka, ADR, CI-gate, DORA, SQLite, rollback, baseline, governance
+```bash
+# Testy jednostkowe
+pytest tests/test_sqlite.py -v
 
-### AGI pamięć długowiecznych agentów open-r1
+# Testy domenowe (z prawdziwymi danymi)
+pytest tests/test_sqlite_domain.py -v
 
-# WORK: AGI pamiec dlugowiecznych agentow open-r1
-## 0-Metadane
-- Katalog: AGI pamiec dlugowiecznych agentow open-r1
-- Pliki: 9 (bez placeholderow; pliki 1-9 zawieraja tresc, 10-60 sa puste)
-- Tagi: AGI, Open-R1, DeepSeek-R1, pamiec-agentow, Hindsight, reading-notes, KANBAN, SQLite, FTS5, sqlite-vec, LangGraph, architektura
-
-### AI w grach Behavior Trees, GOAP i szybkie starty procgen
-
-# AI w grach Behavior Trees, GOAP i szybkie starty procgen
-## 0-Metadane
-- Pliki: 10
-- Tagi: Godot, BehaviorTrees, GOAP, NPC, headless, telemetria, procgen, SQLite, GDScript
-- Status: done
-
+# Benchmarki wydajnościowe
+python benchmarks/bench_sqlite.py --quick
+```
 
 ## Struktura projektu
 
 ```
 ishkarim-sqlite/
-├── pyproject.toml        # installable package
+├── demo.py                    ← uruchom mnie
+├── pyproject.toml
 ├── README.md
-├── MODULES.md            # pełny indeks 154 katalogów-źródeł
-├── src/
-│   └── ishkarim_sqlite/
-│       ├── __init__.py   # publiczne API
-│       ├── utils.py      # wspólne narzędzia
-│       └── *.py          # kod wyekstrahowany z WORK.md
+├── MODULES.md                 ← 154 katalogów-źródeł
+├── docs/
+│   ├── PROBLEMS.md            ← co rozwiązuje / czego nie
+│   ├── api.md                 ← dokumentacja API
+│   ├── overview.md
+│   └── sources.md
+├── src/ishkarim_sqlite/
+│   ├── __init__.py            ← MODULES list + load_knowledge_index()
+│   ├── utils.py               ← read_work_md, extract_tags, extract_python_blocks
+│   └── snippets/              ← kod z WORK.md (referencyjny)
 ├── tests/
-│   ├── __init__.py
-│   └── test_sqlite.py
-└── docs/
-    ├── overview.md
-    └── sources.md
+│   ├── test_sqlite.py         ← testy jednostkowe
+│   └── test_sqlite_domain.py  ← testy domenowe
+└── benchmarks/
+    └── bench_sqlite.py        ← benchmarki wydajnościowe
 ```
 
-## Testy
+## Ograniczenia
 
-```bash
-pytest projects/ishkarim-sqlite/tests/ -v
-```
-
-## Źródło danych
-
-Katalogi źródłowe znajdują się w katalogu głównym repozytorium Ishkarim.
-Każdy katalog zawiera `WORK.md` (notatki badawcze) i `TAGS.md` (metadane).
+> ⚠️ To projekt **referencyjny** — wzorce i wiedza, nie gotowa biblioteka produkcyjna.
+> Przed wdrożeniem produkcyjnym przeczytaj [docs/PROBLEMS.md](docs/PROBLEMS.md).
 
 ---
-*Wygenerowano automatycznie przez `scripts/build_projects.py`*
+
+*Część ekosystemu [Ishkarim](../../README.md) — 154 katalogów wiedzy obszaru `sqlite`*
+*Wygenerowano: 2026-03-11 | `scripts/build_projects.py` + `scripts/enrich_projects.py`*
