@@ -5,7 +5,7 @@
 > Łącznie unikalnych URL: **1801**
 
 
-## 📄 Artykuły naukowe (83)
+## Artykuły naukowe (83)
 
 - <https://aclanthology.org/2025.acl-long.1575.pdf>  
   _źródło: `New advances in AI working memory_05`, `Nowe badania o pamięci AI`_
@@ -168,7 +168,7 @@
 - <https://info.arxiv.org/help/bulk_data_s3.html>  
   _źródło: `Jak unikać „fantomowych" cytowań w badaniach`_
 
-## 🐙 Repozytoria GitHub (222)
+## Repozytoria GitHub (222)
 
 - <https://github.com/asg017/sqlite-vec>  
   _źródło: `AGI pamięć długowiecznych agentów open-r1`, `Lokalna walidacja manifestów JSON‑Schema w SQLite`, `New advances in AI working memory_05` +3_
@@ -331,7 +331,7 @@
 - <https://github.com/anthropics/claude-code/issues/24663>  
   _źródło: `Append‑only JSONL + SQLite: bezpieczne migawki i G`_
 
-## 🤖 ML / modele (12)
+## ML / modele (12)
 
 - <https://cdn-uploads.huggingface.co/production/uploads/64e18e9ec20c27fcc8df384e/fAuys-2PWjSMznK8Yt2Io.png>  
   _źródło: `Retencja, kompakcja i testy offline dla agentów`_
@@ -358,7 +358,7 @@
 - <https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2>  
   _źródło: `Modele embeddingów działające offline na CPU`_
 
-## 📚 Dokumentacja (331)
+## Dokumentacja (331)
 
 - <https://sqlite.org/wal.html>  
   _źródło: `5‑minutowy pre‑mortem dla decyzji`, `Append‑only JSONL + SQLite: bezpieczne migawki i G`, `Automatyczna indukcja schematów LinkML + SQLite_04` +48_
@@ -521,7 +521,7 @@
 - <https://sqlite.org/search?i=1&q=foreign+key>  
   _źródło: `Praktyczne wzorce GC, TTL i checkpointów w SQLite`, `Roundtrip LinkML → JSON‑Schema → SQLite`_
 
-## 🔗 Inne zasoby (1153)
+## Inne zasoby (1153)
 
 - <https://json-schema.org/draft/2020-12/schema>  
   _źródło: `AI w grach Behavior Trees, GOAP i szybkie starty p`, `Agent TODO atomowe jednostki pracy`, `Agent TODO z dokumentów: pipeline i audyt` +33_
@@ -684,7 +684,7 @@
 - <https://chromium.googlesource.com/chromium/src/%2B/c368e30ae55600a1c3c9cb1710a54f9c55de786e/third_party/sqlite/src/src/wal.c>  
   _źródło: `Litestream i wal‑browser: narzędzia do odtwarzania`, `Sondowanie stron i replay WAL`_
 
-## 📁 Katalogi źródłowe
+## Katalogi źródłowe
 
 Obszar `sqlite` zawiera **153** katalogów:
 
